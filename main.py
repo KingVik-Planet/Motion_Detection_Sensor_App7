@@ -7,7 +7,7 @@ time.sleep(1)
 while True:
 
     check, frame = video.read()
-    cv2.imshow("My camera", frame)
+    cv2.imshow("KingVik Planet Camera", frame)
     print(frame)
 
 
