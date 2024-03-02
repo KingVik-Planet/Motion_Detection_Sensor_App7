@@ -18,7 +18,7 @@ while True:
         first_frame = gray_frame_gua
 
     delta_frame = cv2.absdiff(first_frame, gray_frame_gua)
-    cv2.imshow("KingVik Planet Camera", gray_frame_gua)
+    # cv2.imshow("KingVik Planet Camera", gray_frame_gua)
     #print(delta_frame) # to Print All Array seen on Camera
 
 
