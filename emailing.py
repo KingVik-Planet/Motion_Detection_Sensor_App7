@@ -9,8 +9,9 @@ receiver = receiver
 def send_email(image_path):
     print("Send_email started")
     email_message = EmailMessage()
-    email_message["Subject"] = "Motion Detected!"
-    email_message.set_content("Hey some movement was detected by the app!")
+    email_message["Subject"] = "Object in Range, Motion Detected!"
+    email_message.set_content("Hey There are some movement and Object are in Range,"
+                              "This Movement was detected by the app!")
 
     with open(image_path, "rb") as file:
         content = file.read()
