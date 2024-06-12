@@ -44,20 +44,13 @@ while True:
 
         if rectangle.any():
             status = 1
-            cv2.imwrite(f"images/{count}.png", frame)
+            #cv2.imwrite(f"images/{count}.png", frame)
+            cv2.imwrite("images/{}.png".format(count), frame)
+
             count = count + 1
             all_images = glob.glob("*images/*.png")
             index = int(len(all_images)/2)
             image_with_object = all_images[index]
-    # # With DateTime Append
-    # if rectangle.any():
-    #     status = 1
-    #     count += 1
-    #     current_datetime = datetime.now().strftime("%Y%m%d%H%M%S")
-    #     cv2.imwrite(f"Images/{count}_{current_datetime}.png", frame)
-    #     all_images = glob.glob("Images/*.png")
-    #     index = len(all_images) // 2
-    #     image_with_object = all_images[index]
 
     status_list.append(status)
     status_list = status_list[-2:]
