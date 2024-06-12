@@ -1,3 +1,3 @@
-password ="pist rhzb tdfg wdbp"
-sender = "chukwukingsley56@gmail.com"
+password ="zttw ndzq smww dadz"
+sender = "okekeonahcorsprocessingunn@gmail.com"
 receiver = "kingbest2excel@gmail.com"
