@@ -20,7 +20,7 @@ def clean_folder():
     print("Clean_function has started")
     images = glob.glob("images/*.png")
     for image in images:
-        os.unlink(image)
+        os.remove(image)
     print("clean_function ended")
 
 
