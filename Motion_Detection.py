@@ -20,7 +20,7 @@ def clean_folder():
     print("Clean_function has started")
     images = glob.glob("images/*.png")
     for image in images:
-        os.remove(image)
+        os.unlink(image)
     print("clean_function ended")
 
 
@@ -45,18 +45,36 @@ while True:
     dil_frame = cv2.dilate(thresh_frame, None, iterations=2)
     cv2.imshow("My camera", dil_frame)
 
-## Circe Frame
-    contours, check = cv2.findContours(dil_frame, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    for contour in contours:
-        if cv2.contourArea(contour) < SENSITIVITY_THRESHOLD:
-            continue
-        x, y, w, h = cv2.boundingRect(contour)
-        cv2.circle(frame, (x + w // 2, y + h // 2), min(w, h) // 2, (255, 0, 0), 3)
 
-        #Face Detection
-        faces = face_cascade.detectMultiScale(gray_frame_gau,  scaleFactor=1.1, minNeighbors=5)
+    contours, check = cv2.findContours(dil_frame, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+
+    #Cirecle Frame
+    # for contour in contours:
+    #     if cv2.contourArea(contour) < SENSITIVITY_THRESHOLD:
+    #         continue
+    #     x, y, w, h = cv2.boundingRect(contour)
+    #     cv2.circle(frame, (x + w // 2, y + h // 2), min(w, h) // 2, (255, 0, 0), 3)
+    #
+    # contours, check = cv2.findContours(dil_frame, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    for contour in contours:
+        if cv2.contourArea(contour) < 5000:
+            continue
+        x, w, y, h = cv2.boundingRect(contour)
+        rectangle = cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 3)
+
+#Face Detection on Rectangle
+        # faces = face_cascade.detectMultiScale(gray_frame_gau,  scaleFactor=1.1, minNeighbors=5)
+        # for (fx, fy, fw, fh) in faces:
+        #     cv2.rectangle(frame, (fx, fy), (fx + fw, fy +fh), (0, 255, 0), 2)
+#Face Detection on circle
+        faces = face_cascade.detectMultiScale(gray_frame_gau, scaleFactor=1.1, minNeighbors=5)
         for (fx, fy, fw, fh) in faces:
-            cv2.rectangle(frame, (fx, fy), (fx + fw, fy +fh), (0, 255, 0), 2)
+            center_x = fx + fw // 2
+            center_y = fy + fh // 2
+            radius = max(fw, fh) // 2
+            cv2.circle(frame, (center_x, center_y), radius, (0, 255, 0), 2)
 
         status = 1
         #Adding Time Stamp
